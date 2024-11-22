@@ -11,8 +11,9 @@ docker buildx create --use || true
 # Build the Docker image with caching and tagging
 docker buildx build \
   --cache-from=type=registry,ref=${IMAGE_NAME}:latest \
-  --cache-from=type=registry,ref=${IMAGE_NAME}:${GITHUB_SHA} \
-  --tag ${IMAGE_NAME}:${GITHUB_SHA} \
-  --tag ${IMAGE_NAME}:latest .
+  --cache-from=type=registry,ref=${IMAGE_NAME}:${COMMIT_HASH} \
+  --tag ${IMAGE_NAME}:${COMMIT_HASH} \
+  --tag ${IMAGE_NAME}:latest \
+  --push .
 
 echo "Docker image built and pushed successfully"
