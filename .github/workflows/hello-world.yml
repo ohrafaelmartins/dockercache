@@ -24,12 +24,3 @@ jobs:
         ./make_release_actions.sh
       env:
         GITHUB_SHA: ${{ github.sha }}
-
-    - name: Docker Images
-      run: |
-        docker images
-
-    - name: Push Docker Image
-      run: |
-        docker push ohrafaelmartins/elixirdemo:${{ github.sha }}
-        docker push ohrafaelmartins/elixirdemo:latest

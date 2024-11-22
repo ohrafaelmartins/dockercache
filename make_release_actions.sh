@@ -19,5 +19,5 @@ docker buildx build \
   --cache-from=type=registry,ref=${IMAGE_NAME}:latest \
   --cache-from=type=registry,ref=${IMAGE_NAME}:${GITHUB_SHA} \
   --tag ${IMAGE_NAME}:${GITHUB_SHA} \
-  --tag ${IMAGE_NAME}:latest . #\
-  # --push .
+  --tag ${IMAGE_NAME}:latest . \
+  --push .
