@@ -13,7 +13,6 @@ docker buildx create --use || true
 # Build Docker image with cache from Docker Hub
 docker buildx build \
   --cache-from=type=registry,ref=${IMAGE_NAME}:latest \
-  --cache-from=type=registry,ref=${IMAGE_NAME}:${COMMIT_HASH} \
   --tag ${IMAGE_NAME}:${COMMIT_HASH} \
   --tag ${IMAGE_NAME}:latest \
   --push .  # Push directly to Docker Hub
