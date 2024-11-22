@@ -25,7 +25,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t ohrafaelmartins/elixirdemo:${{ env.COMMIT_HASH }} .
+        ./make_release_actions.sh ${{ env.COMMIT_HASH }}
 
     - name: Push Docker Image
       run: |
