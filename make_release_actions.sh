@@ -14,6 +14,6 @@ docker buildx create --use || true
 docker buildx build \
   --cache-from=type=registry,ref=${IMAGE_NAME}:latest \
   --tag ${IMAGE_NAME}:${COMMIT_HASH} \
-  --tag ${IMAGE_NAME}:latest
+  --tag ${IMAGE_NAME}:latest .
 
 echo "Docker image ${IMAGE_NAME}:${COMMIT_HASH} built and pushed successfully."
