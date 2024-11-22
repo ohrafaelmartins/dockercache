@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     vlc \
     htop \
     nginx \
+    openssl \
     python3 python3-pip \
     --no-install-recommends && \
     apt-get clean && \
