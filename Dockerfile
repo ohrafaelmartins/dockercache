@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     git \
     vlc \
     htop \
-    mysql-client \
     nginx \
     python3 python3-pip \
     --no-install-recommends && \
