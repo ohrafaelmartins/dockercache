@@ -19,17 +19,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Extract Commit Hash
-      run: echo "COMMIT_HASH=${{ github.sha }}" >> $GITHUB_ENV
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
-    - name: Build Docker Image
+    - name: Run make_release_actions.sh
       run: |
-        ./make_release_actions.sh ${{ env.COMMIT_HASH }}
+        # Make the script executable if it's not already
+        chmod +x ./make_release_actions.sh
+
+        # Run the script; GITHUB_SHA is automatically available in the environment
+        ./make_release_actions.sh
 
     - name: Push Docker Image
       run: |
-        docker push ohrafaelmartins/elixirdemo:${{ env.COMMIT_HASH }}
+        docker push ohrafaelmartins/elixirdemo:${GITHUB_SHA}
         docker push ohrafaelmartins/elixirdemo:latest

@@ -1,19 +1,18 @@
 #!/bin/bash
-set -e
 
-COMMIT_HASH=$1
+# Define the image name
 IMAGE_NAME="ohrafaelmartins/elixirdemo"
 
-# Enable Docker BuildKit
-export DOCKER_BUILDKIT=1
+echo "Building Docker image with commit hash: ${GITHUB_SHA}"
 
-# Create a builder if it doesn't exist
+# Create a builder if it doesn't exist (only once)
 docker buildx create --use || true
 
-# Build Docker image with cache from Docker Hub
+# Build the Docker image with caching and tagging
 docker buildx build \
   --cache-from=type=registry,ref=${IMAGE_NAME}:latest \
-  --tag ${IMAGE_NAME}:${COMMIT_HASH} \
+  --cache-from=type=registry,ref=${IMAGE_NAME}:${GITHUB_SHA} \
+  --tag ${IMAGE_NAME}:${GITHUB_SHA} \
   --tag ${IMAGE_NAME}:latest .
 
-echo "Docker image ${IMAGE_NAME}:${COMMIT_HASH} built and pushed successfully."
+echo "Docker image built and pushed successfully"
