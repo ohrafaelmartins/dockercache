@@ -21,13 +21,13 @@ jobs:
 
     - name: Run make_release_actions.sh
       run: |
-        # Make the script executable if it's not already
-        chmod +x ./make_release_actions.sh
-
-        # Run the script; GITHUB_SHA is automatically available in the environment
         ./make_release_actions.sh
 
-    - name: Push Docker Image
+    - name: Docker Images
       run: |
-        docker push ohrafaelmartins/elixirdemo:${GITHUB_SHA}
-        docker push ohrafaelmartins/elixirdemo:latest
+        docker images
+
+    # - name: Push Docker Image
+    #   run: |
+    #     docker push ohrafaelmartins/elixirdemo:${GITHUB_SHA}
+    #     docker push ohrafaelmartins/elixirdemo:latest
